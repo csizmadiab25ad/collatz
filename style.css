@@ -1,0 +1,15 @@
+body {
+  color: rgb(131, 216, 212);
+}
+
+h1 {
+  text-align: center;
+}
+
+img {
+  /* 5:3 aspect ratio i suppose*/
+  max-width: 500px;
+  max-height: 300px;
+  display: block;
+  margin: 0 auto;
+}
