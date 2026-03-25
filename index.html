@@ -1,40 +1,37 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="hu">
 <head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>A collatz-sejtés</title>
-  <link rel="stylesheet" href="style.css">
-  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-sRIl4kxILFvY47J16cr9ZwB07vP4J8+LH7qKQnuqkuIAvNWLzeN8tE5YBujZqJLB" crossorigin="anonymous">
-<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.8/dist/js/bootstrap.bundle.min.js" integrity="sha384-FKyoEForCGlyvwx9Hj09JcYn3nv7wiPVlz7YYwJrWVcXK/BmnVDxM+D2scQbITxI" crossorigin="anonymous"></script>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Collatz-vizualizáció</title>
+    <link rel="stylesheet" href="style.css">
 </head>
 <body>
-  <script src="script.js"></script>
-  <br> <!-- crime -->
-  <div class="container border-primary border">
-  <h1><br>A Collatz-sejtés</h1>
-  <div class="text-success container">
-    <hr class="border-4 opacity-75"></hr>
-  </div>
-  <p>A Collatz sejtés egy máig megoldatlan matematikai probléma, amely azt allítja, hogy bármély pozitív egész értéket megadva, 3n+1 rekurzívan mindig 4, 2, és 1re végződik, például:</p>
-  <img src="collatzgraph.webp">
-  <p class="text-center">A probléma:</p>
-    <div class="container-sm border-secondary border-1 border">
-    a<sub>n</sub>+1 = { ha a<sub>n</sub> páros: a<sub>n</sub> / 2; különben 3a<sub>n</sub>+1.</p>
+    <div class="glass-container">
+        <h1>Collatz-sejtés</h1>
+        <p class="intro">Bármilyen pozitív egész számból indulunk ki, a sorozat előbb-utóbb eléri az 1-et.</p>
+
+        <div class="formula-box">
+            <span>Ha <b>páros</b>: n / 2</span>
+            <span>Ha <b>páratlan</b>: 3n + 1</span>
+        </div>
+
+        <div class="input-group">
+            <input type="number" id="szam" placeholder="Adj meg egy számot..." min="1">
+            <button onclick="inditCollatz()">Számítás indítása</button>
+        </div>
+
+        <div id="status-message"></div>
+        
+        <div id="step-display" class="step-card">
+            Vár várakozás...
+        </div>
+
+        <div class="log-container">
+            <h3>Számítási napló</h3>
+            <div id="results"></div>
+        </div>
     </div>
-    <p>...ahol <kbd>n</kbd> egy pozitív egész szám.</p>
-  <p>Ez a példa-program kiírja a megkapott értékeket és hogy mennyiszer sikerült az operáció egy rekurzíó elérése előtt. Azonnal megfog állni, amikor az eredmény egyenlő 1-gyel.</p>
-  <!-- God forgive me for the inline css -->
-  <p class="d-inline-block">n =</p> <input type="number" id="szam">
-  <button type="button" onclick="collatz()" class="btn btn-dark btn-sm">Próba</button>
-  <br><span id="result"></span><br>
-  <div class="container border-secondary border-3 border">
-  <span id="results">Az értékek itt lesznek kilistázva.</span>
-  </div>
-  <p>Folyamatábra (nem teljesen egyezik <a href="/src/js/script.js">a kóddal</a>!)</p>
-  <img src="folyamatabra.png">
-  <br><br>
-  <p>Mivel a collatz sejtés esetében egy páros érték megadásánál megfeleződik az érték, és azután ujrakezdődik a ciklus, bármély megadott érték mindig dekrementál.<br>Emiatt teknikailag nem megoldatlan probléma; mivel minden eséllyel ugyan azzal a végződő páros 4, 2, és páratlan 1-gyel fog végződni.<br><br><sup>További információ: <a href="https://hu.wikipedia.org/wiki/Collatz-sejt%C3%A9s" target="_blank">Wikipédia</a></sup></p>
-  </div>
+    <script src="script.js"></script>
 </body>
 </html>

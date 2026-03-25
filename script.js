@@ -1,40 +1,50 @@
-function collatz() {
+async function inditCollatz() {
+    const inputField = document.getElementById("szam");
+    let n = Math.abs(parseInt(inputField.value));
+    const resultsDiv = document.getElementById("results");
+    const stepDisplay = document.getElementById("step-display");
+    const statusMsg = document.getElementById("status-message");
 
-  // get integer, absolute value it so you dont do a recursive memleak
-  var n = Math.abs(parseInt(document.getElementById("szam").value));
-  let k = ""; // result writing
-  
-  // crash prevention
-  if (isNaN(n) || n == 0) {
-    document.getElementById("result").innerHTML = "Adjon meg egy nem-nulla értéket!";
-    return;
-  }
-
-  // runs
-  var i = 0;
-
-  // actual func
-  while (n != 1) {
-    if ((n % 2) == 0) {
-      n = n / 2;
-    } else {
-      n = 3 * n + 1;
+    if (isNaN(n) || n < 1) {
+        statusMsg.innerHTML = "❌ Kérlek, adj meg egy 0-nál nagyobb számot!";
+        return;
     }
 
-    /** not sure if toString() is necessary because
-    * JS has like no typesafety but who cares, trying
-    * C has given me sleep paralysis demons
-    */
+    // Alaphelyzetbe állítás
+    resultsDiv.innerHTML = "";
+    statusMsg.innerHTML = "⏳ Számítás folyamatban...";
+    let lepesek = 0;
 
-    if (n != 1) {
-    k = k + n.toString() + ", ";
-    } else {
-    k = k + n.toString();
+    while (n !== 1) {
+        let regiN = n;
+        let muvelet = "";
+
+        if (n % 2 === 0) {
+            n = n / 2;
+            muvelet = `<span class="math-highlight">${regiN} / 2</span> = ${n}`;
+        } else {
+            n = 3 * n + 1;
+            muvelet = `<span class="math-highlight">3 * ${regiN} + 1</span> = ${n}`;
+        }
+
+        lepesek++;
+
+        // Kijelző frissítése animációval
+        stepDisplay.style.opacity = 0;
+        await new Promise(r => setTimeout(r, 200)); // Rövid szünet
+        
+        stepDisplay.innerHTML = muvelet;
+        stepDisplay.style.opacity = 1;
+
+        // Napló bővítése
+        const logItem = document.createElement("div");
+        logItem.className = "log-item";
+        logItem.innerHTML = `Lépés ${lepesek}: ${muvelet}`;
+        resultsDiv.prepend(logItem); // A legfrissebb legyen felül
+
+        await new Promise(r => setTimeout(r, 600)); // Várakozás a következő lépés előtt
     }
-  
-    i++;
-  }
 
-  document.getElementById("result").innerHTML = i + " eséllyel futódott le, értékek:";
-  document.getElementById("results").innerHTML = k;
+    statusMsg.innerHTML = `✅ Kész! <b>${lepesek}</b> lépés alatt értük el az 1-et.`;
+    stepDisplay.innerHTML = "🎉 Megérkeztünk: 1";
 }
