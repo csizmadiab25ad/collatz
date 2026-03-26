@@ -9,12 +9,39 @@
 <body>
     <div class="glass-container">
         <h1>Collatz-sejtés</h1>
-        <p class="intro">Bármilyen pozitív egész számból indulunk ki, a sorozat előbb-utóbb eléri az 1-et.</p>
+        <p class="intro"><h3>Bármilyen pozitív egész számból indulunk ki, a sorozat előbb-utóbb eléri az 1-et.</h3></p>
+
+        <h2>Miért érdekes?</h2>
+
+        <p>Nagyon egyszerű szabály, mégis senki sem tudta bebizonyítani vagy cáfolni.
+Számítógéppel már óriási számokig ellenőrizték, és minden esetben működik.
+Ez jól mutatja, hogy a matematika nem csak bonyolult dolgokról szól hanem néha a legegyszerűbb kérdések a legnehezebbek.</p>
+
+<h2>Történet</h2>
+
+<p>A sejtést Lothar Collatz vetette fel az 1930-as években, és azóta is az egyik legismertebb „könnyen érthető, de megoldatlan” probléma.</p>
+
+<h2>Folyamatábra</h2>
+
+<p><p>(nem teljesen egyezik <a href="script.js">a kóddal</a>!)</p>
+  <img src="folyamatabra.png"></p>
+
+<h1>Mi a szabály?</h1>
+
+<p>
+Válassz egy tetszőleges pozitív egész számot, majd ismételd ezt a lépést:
+
+Ha a szám páros, oszd el 2-vel
+Ha a szám páratlan, szorozd meg 3-mal és adj hozzá 1-et
+
+Ezt a folyamatot újra és újra alkalmazod az így kapott számra.</p>
 
         <div class="formula-box">
             <span>Ha <b>páros</b>: n / 2</span>
             <span>Ha <b>páratlan</b>: 3n + 1</span>
         </div>
+
+<h1>Probáld ki te is!</h1>
 
         <div class="input-group">
             <input type="number" id="szam" placeholder="Adj meg egy számot..." min="1">
@@ -24,7 +51,7 @@
         <div id="status-message"></div>
         
         <div id="step-display" class="step-card">
-            Vár várakozás...
+            Itt fog megjelenni a számítás ...
         </div>
 
         <div class="log-container">

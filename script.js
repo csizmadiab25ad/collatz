@@ -10,7 +10,6 @@ async function inditCollatz() {
         return;
     }
 
-    // Alaphelyzetbe állítás
     resultsDiv.innerHTML = "";
     statusMsg.innerHTML = "⏳ Számítás folyamatban...";
     let lepesek = 0;
@@ -29,20 +28,18 @@ async function inditCollatz() {
 
         lepesek++;
 
-        // Kijelző frissítése animációval
         stepDisplay.style.opacity = 0;
-        await new Promise(r => setTimeout(r, 200)); // Rövid szünet
+        await new Promise(r => setTimeout(r, 200));
         
         stepDisplay.innerHTML = muvelet;
         stepDisplay.style.opacity = 1;
 
-        // Napló bővítése
         const logItem = document.createElement("div");
         logItem.className = "log-item";
         logItem.innerHTML = `Lépés ${lepesek}: ${muvelet}`;
-        resultsDiv.prepend(logItem); // A legfrissebb legyen felül
+        resultsDiv.prepend(logItem); 
 
-        await new Promise(r => setTimeout(r, 600)); // Várakozás a következő lépés előtt
+        await new Promise(r => setTimeout(r, 600)); 
     }
 
     statusMsg.innerHTML = `✅ Kész! <b>${lepesek}</b> lépés alatt értük el az 1-et.`;
